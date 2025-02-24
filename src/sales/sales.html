@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Registro de Ventas</title>
+	<base href="..">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<!-- Animanate CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+	<!-- Estilos locales -->
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/graph.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<!-- Header -->
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient fixed-top">
+			<div class="container-fluid">
+				<a id="logo" class="navbar-brand" href="#">Mi Tienda</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarResponsive" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse row" id="navbarResponsive">
+					<div class="col-lg-8 d-lg-flex justify-content-around">
+						<ul class="navbar-nav">
+							<li class="nav-item active">
+								<a class="nav-link active" aria-current="page" href="#">Inicio</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="examplesDropdown" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Ejemplos
+								</a>
+								<ul class="dropdown-menu" id="examplesLinks">
+									<li><a class="dropdown-item">Ejemplos 1</a></li>
+									<li><a class="dropdown-item">Ejemplos 2</a></li>
+									<li><a class="dropdown-item">Ejemplos 3</a></li>
+									<li><a class="dropdown-item">Ejemplos 4</a></li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navServices" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Servicios
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#footer">Servicios globales</a></li>
+									<li><a class="dropdown-item" href="sales/sales.html">Registro de Ventas</a></li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#footer">Contacto</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Productos
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#">Cámaras</a></li>
+									<li><a class="dropdown-item" href="#">Portátiles</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" href="#">Tablets</a></li>
+									<li><a class="dropdown-item" href="#">Teléfonos móviles</a></li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a id="shoppingcart" class="nav-link" href="#"><i class="bi bi-cart-fill"></i> Mi
+									carrito</a>
+							</li>
+						</ul>
+					</div>
+					<div id="language" class="my-1 col-lg-2 header-nav-utilities d-inline-flex justify-content-end">
+						<ul class="navbar-nav">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
+									data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img alt="Idioma seleccionado" src="img/languages/es.png" />
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" data-language="es" href="#"><img alt="Idioma español"
+												src="img/languages/es.png" /></a></li>
+									<li><a class="dropdown-item" data-language="en" href="#"><img alt="Idioma inglés"
+												src="img/languages/en.png" /></a></li>
+									<li><a class="dropdown-item" data-language="fr" href="#"><img alt="Idioma francés"
+												src="img/languages/fr.png" /></a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div
+						class="my-1 col-lg-2 header-nav-utilities d-inline-flex align-items-center justify-content-lg-end">
+						<div class="account d-flex mx-2 flex-column" style="text-align: right">
+							John Doe <a href="#">Cerrar sesión</a>
+						</div>
+						<div class="image">
+							<img alt="John Doe" src="img/user.jpg" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<!-- Graph -->
+		<div id="graph" class="container">
+			<div class="d-flex flex-row pb-2">
+				<h3>Registro de ventas</h3>
+			</div>
+
+			<!-- Yearly Number -->
+			<div class="row">
+				<div class="col-12">
+					<div class="graphSec">
+						<h4 class="text-center pt-3">Ingresos anuales</h4>
+						<h1 class="text-center pb-3 totalNum" id="yearlyTotal"></h1>
+					</div>
+				</div>
+			</div>
+
+			<!-- Charts -->
+			<div class="row mt-3 mb-3">
+				<div class="col-12 col-md-6 mb-4 mb-md-0">
+					<div class="graphSec px-2">
+						<h4 class="text-center py-3">Ventas mensuales</h4>
+						<canvas id="monthlySales" width="400" height="300"></canvas>
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="graphSec px-2">
+						<h4 class="text-center py-3">Departamento de ventas</h4>
+						<canvas id="deptSales" width="400" height="300"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Recent Sales -->
+		<div class="container py-3">
+			<div class="d-flex justify-content-evenly mb-3">
+				<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<i class="bi bi-file-earmark-plus"></i> Añadir venta
+				</button>
+				</button>
+				<button id="bRemoveSale" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+					<i class="bi bi-file-earmark-minus"></i> Eliminar venta
+				</button>
+				<button id="bSalesOver5000" type="button" class="btn">
+					<i class="bi bi-search"></i> Ventas > 5000
+				</button>
+				<button id="bReset" type="button" class="btn">
+					<i class="bi bi-x-square"></i> Resetear
+				</button>
+			</div>
+
+			<!-- New Sales View -->
+			<div class="row newSalesArea mb-3">
+				<div class="col p-0">
+					<div class="list-group" id="productSales">
+						<!-- Product Sales -->
+					</div>
+				</div>
+			</div>
+
+			<!-- New Sale Entry -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header" data-bs-theme="dark">
+							<h5 class="modal-title" id="exampleModalLabel">NUEVA VENTA</h5>
+							<button type="button" class="btn-close close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="monthId"><small class="text-muted">Mes:</small></label>
+									<input type="month" class="form-control" id="monthId" aria-describedby="emailHelp"
+										placeholder="Introduce el mes">
+								</div>
+								<div class="form-group">
+									<label for="itemAmount"><small class="text-muted">Cantidad:</small></label>
+									<input type="number" class="form-control" id="itemAmount"
+										aria-describedby="emailHelp" placeholder="Introduce la cantidad">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">
+										<small class="text-muted">Producto</small>
+									</label><br>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="inlineRadioOptions"
+											id="inlineRadio1" value="camera">
+										<label class="form-check-label" for="inlineRadio1">Cámara</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="inlineRadioOptions"
+											id="inlineRadio2" value="phone">
+										<label class="form-check-label" for="inlineRadio2">Móvil</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="inlineRadioOptions"
+											id="inlineRadio3" value="laptop">
+										<label class="form-check-label" for="inlineRadio3">Portátil</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="inlineRadioOptions"
+											id="inlineRadio4" value="tablet">
+										<label class="form-check-label" for="inlineRadio3">Tablet</label>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+							<button id="bAddSaleModal" type="button" class="btn"><i class="bi bi-file-earmark-plus"></i>
+								Añadir
+								venta</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Delete Sale Entry -->
+			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header" data-bs-theme="dark">
+							<h5 class="modal-title" id="deleteModalLabel">ELIMINAR ENTRADA</h5>
+							<button type="button" class="btn-close close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group"> <label for="removeSales">Ventas en meses</label> <select
+										class="form-control" id="removeSales">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select> </div>
+								<div class="form-group"> <label for="exampleInputEmail1"> <small
+											class="text-muted">Producto:</small> </label><br>
+									<div class="form-check form-check-inline"> <input class="form-check-input"
+											type="radio" name="inlineRadioOptions" id="inlineRadio1" value="camera">
+										<label class="form-check-label" for="inlineRadio1">Cámara</label>
+									</div>
+									<div class="form-check form-check-inline"> <input class="form-check-input"
+											type="radio" name="inlineRadioOptions" id="inlineRadio2" value="phone">
+										<label class="form-check-label" for="inlineRadio2">Móvil</label>
+									</div>
+									<div class="form-check form-check-inline"> <input class="form-check-input"
+											type="radio" name="inlineRadioOptions" id="inlineRadio3" value="laptop">
+										<label class="form-check-label" for="inlineRadio3">Portátil</label>
+									</div>
+									<div class="form-check form-check-inline"> <input class="form-check-input"
+											type="radio" name="inlineRadioOptions" id="inlineRadio4" value="tablet">
+										<label class="form-check-label" for="inlineRadio4">Tablet</label>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+							<button id="bRemoveSaleModal" type="button" class="btn"><i class="bi bi-file-earmark-x"></i>
+								Eliminar
+								venta</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="bg-dark bg-gradient text-white" id="footer">
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-lg-3 col-md-6">
+						<div class="footer-info">
+							<h3>Mi Tienda</h3>
+							<p>
+								Dirección <br>
+								Ciudad, CP 00000<br><br>
+								<strong>Phone:</strong> +34 666 666 666<br>
+								<strong>Email:</strong> info@example.com<br>
+							</p>
+							<div class="social-links mt-3">
+								<a href="#"><i class="bi bi-twitter"></i></a>
+								<a href="#"><i class="bi bi-facebook"></i></a>
+								<a href="#"><i class="bi bi-instagram"></i></a>
+								<a href="#"><i class="bi bi-google"></i></a>
+								<a href="#"><i class="bi bi-linkedin"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6 footer-links">
+						<h4>Enlaces de interés</h4>
+						<ul>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Inicio</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Sobre nosotros</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicios</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Términos de servicio</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Política de privacidad</a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-2 col-md-6 footer-links">
+						<h4>Servicios</h4>
+						<ul>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 1</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 2</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 3</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 4</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 5</a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-4 col-md-6 footer-newsletter">
+						<h4>Nuestra Newsletter</h4>
+						<p>Suscribete a nuestro servicio de newsletter para manternete al día de nuestras novedades.</p>
+						<form action="" method="post">
+							<input type="email" name="email"><input type="submit" value="Suscribete">
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="copyright">
+				© Copyright <strong><span>Mi Tienda</span></strong>.
+			</div>
+			<div class="credits">
+			</div>
+		</div>
+	</footer>
+
+	<a id="toparrow" href="#"><i class="bi bi-arrow-up-circle-fill"></i></a>
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"
+		integrity="sha512-SuxO9djzjML6b9w9/I07IWnLnQhgyYVSpHZx0JV97kGBfTIsUYlWflyuW4ypnvhBrslz1yJ3R+S14fdCWmSmSA=="
+		crossorigin="anonymous"></script>
+	<script src="./js/RegistroVentas/pageChart.js"></script>
+</body>
+
+</html>

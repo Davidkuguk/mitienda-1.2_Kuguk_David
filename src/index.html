@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Mi tienda. Web de ejemplo JS</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<!-- Animanate CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+	<!-- Estilos locales -->
+	<link href="css/main.css" rel="stylesheet" />
+</head>
+
+<body>
+	<!-- Header -->
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient fixed-top">
+			<div class="container-fluid">
+				<a id="logo" class="navbar-brand" href="#">Mi Tienda</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarResponsive" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse row" id="navbarResponsive">
+					<div class="col-lg-8 d-lg-flex justify-content-around">
+						<ul class="navbar-nav">
+							<li class="nav-item active">
+								<a class="nav-link active" aria-current="page" href="#">Inicio</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="examplesDropdown" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Ejemplos
+								</a>
+								<ul class="dropdown-menu" id="examplesLinks">
+									<li><a class="dropdown-item">03-01 Tutorial Básico</a></li>
+									<li><a class="dropdown-item">03-02 FizzBuzz</a></li>
+									<li><a class="dropdown-item">03-03 Sintaxis y operadores</a></li>
+									<li><a class="dropdown-item" href="blackjack/index.html">03-04 BlackJack</a></li>
+									<li><a class="dropdown-item">03-05 Expresiones Regulares</a></li>
+									<li><a class="dropdown-item">03-06 Colecciones</a></li>
+									<li><a class="dropdown-item">03-07 Symbol</a></li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navServices" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Servicios
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#footer">Servicios globales</a></li>
+									<li><a class="dropdown-item" href="sales/sales.html">Registro de Ventas</a></li>
+									<li><a class="dropdown-item" href="blackjack/index.html">Blackjack</a></li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#footer">Contacto</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Productos
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#">Cámaras</a></li>
+									<li><a class="dropdown-item" href="#">Portátiles</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" href="#">Tablets</a></li>
+									<li><a class="dropdown-item" href="#">Teléfonos móviles</a></li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a id="shoppingcart" class="nav-link" href="#"><i class="bi bi-cart-fill"></i> Mi
+									carrito</a>
+							</li>
+						</ul>
+					</div>
+					<div id="language" class="my-1 col-lg-2 header-nav-utilities d-inline-flex justify-content-end">
+						<ul class="navbar-nav">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
+									data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img alt="Idioma seleccionado" src="img/languages/es.png" />
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" data-language="es" href="#"><img alt="Idioma español"
+												src="img/languages/es.png" /></a></li>
+									<li><a class="dropdown-item" data-language="en" href="#"><img alt="Idioma inglés"
+												src="img/languages/en.png" /></a></li>
+									<li><a class="dropdown-item" data-language="fr" href="#"><img alt="Idioma francés"
+												src="img/languages/fr.png" /></a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div
+						class="my-1 col-lg-2 header-nav-utilities d-inline-flex align-items-center justify-content-lg-end">
+						<div class="account d-flex mx-2 flex-column" style="text-align: right">
+							John Doe <a href="#">Cerrar sesión</a>
+						</div>
+						<div class="image">
+							<img alt="John Doe" src="img/user.jpg" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<!-- BANNER -->
+	<div class="banner">
+		<div class="d-flex">
+			<div
+				class="text-dark container d-flex flex-column justify-content-center align-items-sm-stretch align-items-md-center">
+				<h1 id="message" class="col-sm-12">Obtén un descuento</h1>
+				<h2 id="discount">20%</h2>
+				<p id="message2">Solo está temporada</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Examples Buttons -->
+	<section id="examples" class="container cat-list d-none">
+		<!-- Inicio Tutorial Básico -->
+		<div class="row">
+			<h3>03-01 Tutorial Básico</h3>
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a class="nav-link active" data-bs-toggle="tab" href="#tb01">Tipos y operadores</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#tb02">Flujo de programa</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#tb03">Arrays</a>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#tb04">Objetos</a>
+				</li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div class="tab-pane active container" id="tb01">
+					<button class="btn">Variable y constantes</button>
+					<button class="btn">Tipos y operadores: Numbers</button>
+					<button class="btn">Tipos y operadores: String</button>
+					<button class="btn">Tipos y operadores: Boolean</button>
+					<button class="btn">Tipos y operadores: Null y undefined</button>
+					<button class="btn">Tipos y operadores: Objeto literal</button>
+				</div>
+				<div class="tab-pane container" id="tb02">
+					<button class="btn">Condicionales</button>
+					<button class="btn">Ámbito de variables</button>
+					<button class="btn">Bucles</button>
+					<button class="btn">Funciones</button>
+				</div>
+				<div class="tab-pane container" id="tb03">
+					<button class="btn">Arrays</button>
+					<button class="btn">Manipulación de arrays</button>
+					<button class="btn">Recorrer un array</button>
+				</div>
+				<div class="tab-pane container" id="tb04">
+					<button class="btn">Propiedades</button>
+					<button class="btn">Métodos</button>
+					<button class="btn">Paso por referencia</button>
+					<button class="btn">Styling DOM</button>
+					<button class="btn">Detectando eventos</button>
+					<button class="btn">Objeto classList</button>
+					<button class="btn">Ámbito global</button>
+				</div>
+			</div> <!-- Fin Tab panes -->
+		</div>
+		<!-- Fin Tutorial Básico -->
+		<!-- Inicio FizzBuzz -->
+		<div class="row">
+			<div class="col">
+				<h3>03-02 Ejemplo FizzBuzz</h3>
+				<button class="btn">FizzBuzz V1</button>
+				<button class="btn">FizzBuzz V2</button>
+				<button class="btn">FizzBuzz V3</button>
+			</div>
+		</div>
+		<!-- Fin FizzBuzz -->
+
+		<!-- Inicio Sintaxis y operadores -->
+		<div class="row">
+			<h3>03-03 Sintaxis y operadores</h3>
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a class="nav-link active" data-bs-toggle="tab" href="#so01">Switch</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#so02">For</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#so03">Math</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#so04">Corto Ciruito</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#so05">Date</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#so06">Excepciones</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#so07">Spread</a>
+				</li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div class="tab-pane active container" id="so01">
+					<button class="btn">Claúsula default</button>
+					<button class="btn">Múltiples case</button>
+					<button class="btn">Perdida clausula Break</button>
+					<button class="btn">Comparación estricta</button>
+				</div>
+				<div class="tab-pane container" id="so02">
+					<button class="btn">For-in</button>
+					<button class="btn">For-of</button>
+					<button class="btn">String como un array</button>
+					<button class="btn">Rompiendo un bucle</button>
+					<button class="btn">Saltando iteración</button>
+				</div>
+				<div class="tab-pane container" id="so03">
+					<button class="btn">Constantes de Number</button>
+					<button class="btn">Métodos de Number</button>
+					<button class="btn">Chequear NaN</button>
+					<button class="btn">Epsilon</button>
+					<button class="btn">Enteros seguros</button>
+					<button class="btn">Enteros aleatorios</button>
+				</div>
+				<div class="tab-pane container" id="so04">
+					<button class="btn">Evitar errores</button>
+					<button class="btn">Valores por defecto</button>
+					<button class="btn">Invocar una función</button>
+				</div>
+				<div class="tab-pane container" id="so05">
+					<button class="btn">Calculo de días</button>
+					<button class="btn">Reloj digital</button>
+					<button class="btn">Formato de fecha</button>
+				</div>
+				<div class="tab-pane container" id="so06">
+					<button class="btn">Try-catch</button>
+					<button class="btn">Try-catch-finally</button>
+					<button class="btn">Error personalizado</button>
+					<button class="btn">Range Error</button>
+					<button class="btn">Type Error</button>
+					<button class="btn">URI Error</button>
+				</div>
+				<div class="tab-pane container" id="so07">
+					<button class="btn">String a array</button>
+					<button class="btn">Copiar un array</button>
+					<button class="btn">Copiar array de objetos</button>
+					<button class="btn">Concatenar arrays</button>
+					<button class="btn">Spread en constructores</button>
+					<button class="btn">Spread con argumentos</button>
+				</div>
+			</div> <!-- Fin Tab panes -->
+		</div>
+		<!-- Fin Sintaxis y operadores -->
+
+		<div class="row"></div> <!-- BlackJack -->
+
+		<!-- Inicio RegExp -->
+		<div class="row">
+			<div class="col">
+				<h3>03-05 Expresiones Regulares</h3>
+				<button class="btn">Crear una Expresión Regular</button>
+				<button class="btn">Caracteres opcionales</button>
+				<button class="btn">Rangos de caracteres predefinidos</button>
+				<button class="btn">Cuantificadores con rangos</button>
+				<button class="btn">Cuantificadores con comodines V1</button>
+				<button class="btn">Cuantificadores con comodines V2</button>
+				<button class="btn">Cuantificadores con comodines V3</button>
+				<button class="btn">Caracteres de escape</button>
+				<button class="btn">Agrupamientos</button>
+				<button class="btn">Posición de la cadena</button>
+				<button class="btn">Delimitadores</button>
+				<button class="btn">Posicionamiento en el String</button>
+				<button class="btn">Modificadores</button>
+				<button class="btn">Iterar sobre Expresión Regular</button>
+				<button class="btn">Métodos de String V1</button>
+				<button class="btn">Métodos de String V2</button>
+				<button class="btn">Ejemplos reales</button>
+			</div>
+		</div>
+		<!-- Fin RegExp -->
+
+		<!-- Inicio Colecciones -->
+		<div class="row">
+			<h3>03-06 Colecciones</h3>
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a class="nav-link active" data-bs-toggle="tab" href="#arr1">Array</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#arr2">Set</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#arr3">Map</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="tab" href="#arr4">Weak</a>
+				</li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div class="tab-pane active container" id="arr1">
+					<button class="btn">Index-of</button>
+					<button class="btn">Find</button>
+					<button class="btn">ForEach</button>
+					<button class="btn">ForEach con this</button>
+					<button class="btn">Mapear un array</button>
+					<button class="btn">Ordendar por enteros</button>
+					<button class="btn">Ordendar por string</button>
+					<button class="btn">Filtrado</button>
+					<button class="btn">Eliminar elementos</button>
+					<button class="btn">Verificar características</button>
+					<button class="btn">Desestructurando un array</button>
+				</div>
+				<div class="tab-pane container" id="arr2">
+					<button class="btn">Trabajando con Set</button>
+					<button class="btn">Inicializar Set</button>
+					<button class="btn">Iterar sobre Set V1</button>
+					<button class="btn">Iterar sobre Set V2</button>
+					<button class="btn">Iterar sobre Set V3</button>
+				</div>
+				<div class="tab-pane container" id="arr3">
+					<button class="btn">Trabajando con Map</button>
+					<button class="btn">Iterar sobre Map V1</button>
+					<button class="btn">Iterar sobre Map V2</button>
+					<button class="btn">Iterar sobre Map V3</button>
+					<button class="btn">Iterar sobre Map V4</button>
+				</div>
+				<div class="tab-pane container" id="arr4">
+					<button class="btn">WeakSet</button>
+					<button class="btn">WeakMap</button>
+					<button class="btn">Cache con WeakMap</button>
+				</div>
+			</div> <!-- Fin Tab panes -->
+		</div>
+		<!-- Fin Colecciones -->
+
+		<!-- Inicio RegExp -->
+		<div class="row">
+			<div class="col">
+				<h3>03-07 Symbol</h3>
+				<button class="btn">Crear un Symbol</button>
+				<button class="btn">Symbol como propiedad</button>
+				<button class="btn">Prevenir colisiones</button>
+				<button class="btn">Registro global</button>
+			</div>
+		</div>
+		<!-- Fin RegExp -->
+
+
+		<div class="row mt-3">
+			<div id="result" class=" p-1"></div>
+			<button id="hide-result" class="btn">Ocultar ejemplos</button>
+		</div>
+	</section>
+
+	<!-- Lotería -->
+	<div id="loto" class="p-5 mb-4 bg-body-tertiary rounded-3" style="display:none">
+		<div class="container-fluid py-5">
+			<h1>Adivina el gordo de Navidad</h1>
+			<button type="button" id="b-start" class="btn btn-primary">Comenar</button>
+			<div class="p-3" style="display: none" id="output">Resultado</div>
+			<div id="game" class="container" style="display:none">
+				<div id="ciphers" class="row justify-content-center m-3">
+					<div class="col-1 m-2"><input type="number" id="num1" min="0" max="9" value="0"></div>
+					<div class="col-1 m-2"><input type="number" id="num2" min="0" max="9" value="0"></div>
+					<div class="col-1 m-2"><input type="number" id="num3" min="0" max="9" value="0"></div>
+					<div class="col-1 m-2"><input type="number" id="num4" min="0" max="9" value="0"></div>
+					<div class="col-1 m-2"><input type="number" id="num5" min="0" max="9" value="0"></div>
+				</div>
+				<div class="row justify-content-center m-3">
+					<button id="b-guess" type="button" class="btn btn-primary">Adivinar</button>
+				</div>
+				<p>Reglas</p>
+				<ul>
+					<li>Color rojo, el valor está por debajo del número.</li>
+					<li>Color azul, el valor está por encima del número.</li>
+					<li>Color verde, el valor es el correcto.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- Fin lotería -->
+
+	<!-- Buscador -->
+	<div id="search" id="loto" class="p-5 mb-4 bg-body-tertiary rounded-3" style="display:none">
+		<div class="container-fluid py-5">
+			<div class="text-dark container justify-content-center">
+				<h2>Máximos anotadores NBA</h2>
+				<div class="row justify-content-end">
+					<input id="b-search" type="text" placeholder="Buscar">
+				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Jugador</th>
+							<th>Equipo</th>
+							<th>Posición</th>
+							<th>Media</th>
+						</tr>
+					</thead>
+					<tbody id="players">
+						<tr>
+							<td>Donovan Mitchell</td>
+							<td>UTAH</td>
+							<td>Escolta</td>
+							<td>33.85</td>
+						</tr>
+						<tr>
+							<td>Luka Doncic</td>
+							<td>Dallas</td>
+							<td>Base</td>
+							<td>26.98</td>
+						</tr>
+						<tr>
+							<td>James Harden</td>
+							<td>Houston</td>
+							<td>Alero</td>
+							<td>26.76</td>
+						</tr>
+						<tr>
+							<td>Joel Embiid</td>
+							<td>Philadelphia</td>
+							<td>Pivot</td>
+							<td>25.72</td>
+						</tr>
+						<tr>
+							<td>Kawhi Leonard</td>
+							<td>Clippers</td>
+							<td>Alero</td>
+							<td>25.70</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div style="display: none">
+		<div class="jumbotron jumbotron-fluid d-flex">
+		</div>
+	</div>
+	<!-- Fin Buscador -->
+
+
+	<!-- CATEGORIES -->
+	<div id="categories" data-type="list" class="container cat-list">
+		<div class="row">
+			<div class="col-lg-3 col-md-6"><a href="#">
+					<div class="cat-list-image"><img alt="Categoría cámaras" src="img/catcamara.jpg" />
+					</div>
+					<div class="cat-list-text">
+						<h3>Cámaras</h3>
+						<div>Digitales y reflex</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-3 col-md-6"><a href="#">
+					<div class="cat-list-image"><img alt="Categoría móviles" src="img/catmovi.jpg" />
+					</div>
+					<div class="cat-list-text">
+						<h3>Móviles</h3>
+						<div>Modelos exclusivos</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-3 col-md-6"><a href="#">
+					<div class="cat-list-image"><img alt="Categoría portátiles" src="img/catpportatil.jpg" />
+					</div>
+					<div class="cat-list-text">
+						<h3>Portátiles</h3>
+						<div>Intel y AMD</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-3 col-md-6"><a href="#">
+					<div class="cat-list-image"><img alt="Categoría Tablets" src="img/cattablet.jpg" />
+					</div>
+					<div class="cat-list-text">
+						<h3>Tablets</h3>
+						<div>Android y iPad</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<main>
+		<!-- VISTAS -->
+		<div class="container article-banner">
+			<div class="row">
+				<div class="col d-md-flex align-items-md-stretch flex-md-nowrap">
+					<div class="article-banner-image flex-sm-grow-1">
+						<h4 class="d-lg-none">Artículo semanal</h4>
+					</div>
+					<div
+						class="article-banner-text d-flex flex-column align-items-center justify-content-center flex-sm-grow-1">
+						<h4>Artículo semanal</h4>
+						<h5>Coworking</h5>
+						<p>¿Cómo compartir espacios de trabajo?</p>
+						<a id="button" class="btn" href="#">Ver artículo</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="bg-dark bg-gradient text-white" id="footer">
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-lg-3 col-md-6">
+						<div class="footer-info">
+							<h3>Mi Tienda</h3>
+							<p>
+								Dirección <br>
+								Ciudad, CP 00000<br><br>
+								<strong>Phone:</strong> +34 666 666 666<br>
+								<strong>Email:</strong> info@example.com<br>
+							</p>
+							<div class="social-links mt-3">
+								<a href="#"><i class="bi bi-twitter"></i></a>
+								<a href="#"><i class="bi bi-facebook"></i></a>
+								<a href="#"><i class="bi bi-instagram"></i></a>
+								<a href="#"><i class="bi bi-google"></i></a>
+								<a href="#"><i class="bi bi-linkedin"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6 footer-links">
+						<h4>Enlaces de interés</h4>
+						<ul>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Inicio</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Sobre nosotros</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicios</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Términos de servicio</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Política de privacidad</a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-2 col-md-6 footer-links">
+						<h4>Servicios</h4>
+						<ul>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 1</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 2</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 3</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 4</a></li>
+							<li><a href="#"><i class="bi bi-chevron-right"></i> Servicio 5</a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-4 col-md-6 footer-newsletter">
+						<h4>Nuestra Newsletter</h4>
+						<p>Suscribete a nuestro servicio de newsletter para manternete al día de nuestras novedades.</p>
+						<form action="" method="post">
+							<input type="email" name="email"><input type="submit" value="Suscribete">
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="copyright">
+				© Copyright <strong><span>Mi Tienda</span></strong>.
+			</div>
+			<div class="credits">
+			</div>
+		</div>
+	</footer>
+
+	<a id="toparrow" href="#"><i class="bi bi-arrow-up-circle-fill"></i></a>
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+	<script src="./js/main.js"></script>
+	<script src="./js/result.js"></script>
+	<script src="./js/examples/03-01BasicTutorial/01Types.js"></script>
+	<script src="./js/examples/03-01BasicTutorial/02ProgramFlow.js"></script>
+	<script src="./js/examples/03-01BasicTutorial/03Arrays.js"></script>
+	<script src="./js/examples/03-01BasicTutorial/04Objects.js"></script>
+	<script src="./js/examples/03-02FizzBuzz/01FizzBuzz.js"></script>
+	<script src="./js/examples/03-03Syntax/01Switch.js"></script>
+	<script src="./js/examples/03-03Syntax/02For.js"></script>
+	<script src="./js/examples/03-03Syntax/03Math.js"></script>
+	<script src="./js/examples/03-03Syntax/04ShortCircuit.js"></script>
+	<script src="./js/examples/03-03Syntax/05Date.js"></script>
+	<script src="./js/examples/03-03Syntax/06Exceptions.js"></script>
+	<script src="./js/examples/03-03Syntax/07Spread.js"></script>
+	<script src="./js/examples/03-05RegExp/01RegExp.js"></script>
+	<script src="./js/examples/03-06Collections/01Array.js"></script>
+	<script src="./js/examples/03-06Collections/02Set.js"></script>
+	<script src="./js/examples/03-06Collections/03Map.js"></script>
+	<script src="./js/examples/03-06Collections/04Weak.js"></script>
+	<script src="./js/examples/03-07Symbol/01Symbol.js"></script>
+
+</body>
+
+</html>

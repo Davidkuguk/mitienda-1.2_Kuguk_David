@@ -1,0 +1,15 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+html {
+	font-size: 16px;
+	scroll-behavior: smooth;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.42857143;
+    color: #364147;
+	background-color: #ffffff;
+	padding-top: 68px;
+}
+
