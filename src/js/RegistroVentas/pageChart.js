@@ -81,7 +81,24 @@ function addYearlyTotal(a, b, c) {
 }
 
 function initMonthlyTotalSales(){
-	yearlyLabel.innerHTML = Array.from(monthlySalesMap.values()).reduce( function (count, value){ return count + value; }, 0) + "€";
+	// yearlyLabel.innerHTML = Array.from(monthlySalesMap.values()).reduce( function (count, value){ return count + value; }, 0) + "€";
+
+  //necesitamos una varible donde ir almacenando el valor que vamos sumando
+  let total = 0;
+
+  //entramos en el mapa de meses, y en cada valor del mes
+  //nos dirigimos al producto y del producto nos dirigimos al valor
+  //el cual vamos almacenando en los totales
+  monthlySalesMap.forEach((productSalesMap) =>{
+    productSalesMap.forEach((amount) =>{
+      total += amount;
+    })
+  })
+
+
+  //insertamos en el html el total
+  yearlyLabel.innerHTML = total + '€'
+  
 }
 
 initMonthlyTotalSales();
@@ -101,6 +118,10 @@ function findOver5000() {
 
 function resetMonthlySales(){
 	monthlySalesMap.clear();
+
+  //reiniciamos el Map de productos
+ monthlySalesMap.forEach((productSalesMap) => productSalesMap.clear());
+
 	monthlySalesChart.reset();
 	monthlySalesChart.render();
 	initMonthlyTotalSales();
@@ -109,17 +130,51 @@ function resetMonthlySales(){
 // Añadir ventas al gráfico
 function addSale() {
   try {
+    // Validación de datos de entrada
     if(newMonth.value === '' ||newAmount.value === '' ||newProduct.value === ''){
       throw {
         name: 'InputError',
         message: 'Todos los campos tienen que estar completos ',
       };
     }
-    // Validación de datos de entrada
-    if (monthlySalesMap.has(newMonth.value)) {
-     const product  = new Map()
+
+    //comprobar si el mes tiene el mes
+    if(monthlySalesMap.has(newMonth.value)){
+
+        //obtenemos el map de productos del mes
+        const productSalesMap = monthlySalesMap.get(newMonth.value);
+
+        //comprobar si el producto esta añadido y sumarle el valor
+        if(productSalesMap.has(newProduct.value)){
+
+            //obtenemos el valor que tenia el Map y si no tiene por algun motivo, lo iniciamos en 0
+            const valorActual = productSalesMap.get(newProduct.value) || 0;
+
+            //insertamos los datos en el Map y sumamos el valor
+            productSalesMap.set(newProduct.value, valorActual + parseInt(newAmount.value));
+            console.log('Se sumaron los valores');
+        }else{
+
+          //si el producto no fue registrado, se creara uno nuevo
+          productSalesMap.set(newProduct.value, parseInt(newAmount.value));
+          console.log('se creo el producto');
+        }
+      
+    }else{
+
+      //si el mes no existe creamos un mapa de productos para ese mes
+      const productSalesMap = new Map();
+      productSalesMap.set(newProduct.value, parseInt(newAmount.value));
+
+      //añadimos el producto al mapa de mes
+      
+      console.log(monthlySalesMap.set(newMonth.value, productSalesMap));
+      console.log('se creo un nuevo mes con su primer producto');
     }
-   monthlySalesMap.set(newMonth.value, Number.parseInt(newAmount.value));
+
+
+    
+  
     // Recuento de totales
     initMonthlyTotalSales();
     // Actualizar gráfico
