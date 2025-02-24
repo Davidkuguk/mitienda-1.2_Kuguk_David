@@ -112,12 +112,12 @@ function addSale() {
     if(newMonth.value === '' ||newAmount.value === '' ||newProduct.value === ''){
       throw {
         name: 'InputError',
-        message: 'Todos los campos tienen que estar completos',
+        message: 'Todos los campos tienen que estar completos ',
       };
     }
     // Validación de datos de entrada
     if (monthlySalesMap.has(newMonth.value)) {
-      
+     const product  = new Map()
     }
    monthlySalesMap.set(newMonth.value, Number.parseInt(newAmount.value));
     // Recuento de totales
