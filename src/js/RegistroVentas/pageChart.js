@@ -4,7 +4,8 @@ const yearlyLabel = document.getElementById('yearlyTotal');
 const bSalesOver5000 = document.getElementById('bSalesOver5000');
 bSalesOver5000.addEventListener('click', getSalesMonths);
 const bReset = document.getElementById('bReset');
-bReset.addEventListener('click',resetMonthlySales);
+bReset.addEventListener('click', resetMonthlySales);
+
 // Valores del formulario
 const newAmount = document.getElementById('itemAmount');
 const newMonth = document.getElementById('monthId');
@@ -93,6 +94,7 @@ function initMonthlyTotalSales(){
     productSalesMap.forEach((amount) =>{
       total += amount;
     })
+
   })
 
 
@@ -117,14 +119,13 @@ function findOver5000() {
 }
 
 function resetMonthlySales(){
+
+  console.log('aqui estamos');
 	monthlySalesMap.clear();
-
-  //reiniciamos el Map de productos
- monthlySalesMap.forEach((productSalesMap) => productSalesMap.clear());
-
 	monthlySalesChart.reset();
 	monthlySalesChart.render();
 	initMonthlyTotalSales();
+
 }
 
 // Añadir ventas al gráfico
@@ -172,9 +173,6 @@ function addSale() {
       console.log('se creo un nuevo mes con su primer producto');
     }
 
-
-    
-  
     // Recuento de totales
     initMonthlyTotalSales();
     // Actualizar gráfico
@@ -197,6 +195,12 @@ function cleanAddSaleForm() {
 
 //Resetear datos en los gráficos
 function resetMonthlySales(){
+
+   //reiniciamos el Map de productos
+  monthlySalesMap.forEach((productSalesMap) =>{
+    productSalesMap.clear()
+  })
+
 	monthlySalesArray.length = 0;
 	monthlyLabelsSet.clear();
 	monthlySalesChart.update();
