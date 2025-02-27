@@ -263,11 +263,15 @@ function resetMonthlySales(){
    //reiniciamos el Map de productos
    monthlySalesMap.clear();
 
-   //reiniciamos los datos del chart
+   //reiniciamos los datos del chart bar
    monthlySalesChart.data.labels = [];
    monthlySalesChart.data.datasets.forEach(dataset => dataset.data = []);
    monthlySalesChart.update();
    initMonthlyTotalSales();
+
+   //reiniciamos los datos del chart pie
+   deptSalesChart.data.datasets[0].data = [0,0,0,0];
+   deptSalesChart.update();
    
 }
 
