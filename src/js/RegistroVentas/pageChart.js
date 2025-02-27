@@ -20,8 +20,8 @@ bRemoveSaleModal.addEventListener('click',removeMonthlySale);
 const newProduct = document.forms[0].inlineRadioOptions;
 
 // Variables
-const monthSales = Array.of(6500, 3250, 4000);
-const monthLabels = Array.of('Octubre', 'Noviembre', 'Diciembre');
+// const monthSales = Array.of(6500, 3250, 4000);
+// const monthLabels = Array.of('Octubre', 'Noviembre', 'Diciembre');
 const deptSales = Array.of(12, 9, 7, 3);
 const deptLabels = Array.of('Cámara', 'Móvil', 'Portátil', 'Tablet');
 const yearlyTotal = 0;
@@ -32,6 +32,7 @@ const monthlySalesArray = [];
 const monthlySalesMap = new Map();
 
 // Gráfico de Barras
+
 const monthlySalesChart = new Chart(monthCtx, {
   type: 'bar',
   data: {
@@ -49,12 +50,15 @@ const monthlySalesChart = new Chart(monthCtx, {
   },
   options: {
     scales: {
-      yAxes: [{
-        ticks: { beginAtZero: true },
-      }],
-    },
-  },
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
 });
+
+
+
 
 // Pie
 const deptSalesChart = new Chart(deptCtx, {
@@ -84,6 +88,11 @@ function addYearlyTotal(a, b, c) {
 function initMonthlyTotalSales(){
 	// yearlyLabel.innerHTML = Array.from(monthlySalesMap.values()).reduce( function (count, value){ return count + value; }, 0) + "€";
 
+
+  /**
+   * EJERCICIO 2
+   */
+
   //necesitamos una varible donde ir almacenando el valor que vamos sumando
   let total = 0;
 
@@ -96,8 +105,6 @@ function initMonthlyTotalSales(){
     })
 
   })
-
-
   //insertamos en el html el total
   yearlyLabel.innerHTML = total + '€'
   
@@ -118,18 +125,12 @@ function findOver5000() {
   alert(`Cantidad: ${quantity} Posición: ${position}`);
 }
 
-function resetMonthlySales(){
-
-  console.log('aqui estamos');
-	monthlySalesMap.clear();
-	monthlySalesChart.reset();
-	monthlySalesChart.render();
-	initMonthlyTotalSales();
-
-}
-
 // Añadir ventas al gráfico
 function addSale() {
+    /**
+     * EJERCICIO 1
+     */
+
   try {
     // Validación de datos de entrada
     if(newMonth.value === '' ||newAmount.value === '' ||newProduct.value === ''){
@@ -138,8 +139,7 @@ function addSale() {
         message: 'Todos los campos tienen que estar completos ',
       };
     }
-
-    //comprobar si el mes tiene el mes
+   //comprobar si el mes tiene el mes
     if(monthlySalesMap.has(newMonth.value)){
 
         //obtenemos el map de productos del mes
@@ -168,25 +168,68 @@ function addSale() {
       productSalesMap.set(newProduct.value, parseInt(newAmount.value));
 
       //añadimos el producto al mapa de mes
-      
+      //DEJO LOS CONSOLE LOG PORQUE ME SIRVE PARA VER EL ALMACENAMIENTO DEL PRODUCTO
       console.log(monthlySalesMap.set(newMonth.value, productSalesMap));
       console.log('se creo un nuevo mes con su primer producto');
     }
 
     // Recuento de totales
     initMonthlyTotalSales();
+    updateGraphicBar();
     // Actualizar gráfico
-		monthlySalesChart.data.datasets[0].data = Array.from(monthlySalesMap.values());
-		monthlySalesChart.data.labels = Array.from(monthlySalesMap.keys());
-    monthlySalesChart.update();
+		//  monthlySalesChart.data.datasets[0].data = Array.from(monthlySalesMap.forEach((product) => product.values()));
+	  // monthlySalesChart.data.labels = Array.from(monthlySalesMap.keys());
+  
   } catch (error) {
     // Tratamiento de excepciones
     alert(error.message);
   } finally {
     // Reseteo de formulario
     cleanAddSaleForm();
-  }
+
+    }
 }
+
+function updateGraphicBar(){
+  //datos necesario {monthLabel, dataArray, bg:color}
+
+  //obtenemos el array de monthLabel
+  let monthLabel = Array.from(monthlySalesMap.keys());
+
+  //Declaramos las categoria para obtener el nombre del producto
+  let categories = ['camera', 'laptop','phone', 'tablet'];
+
+  //le pasamos al objeto los datos obtenidos de addSale
+  let dataSets = categories.map(category =>{
+
+    //retornamos el objeto con los datos
+    return {
+      label: category,
+      data: monthLabel.map(month => {
+        let monthSales = monthlySalesMap.get(month);
+        return monthSales.has(category) ? monthSales.get(category) : 0;
+      }),
+      backgroundColor: colorProducto(category),
+      borderWidth: 0
+    
+    }
+  })
+
+  monthlySalesChart.data.labels = monthLabel;
+  monthlySalesChart.data.datasets = dataSets;
+  monthlySalesChart.update();
+}
+
+function colorProducto(producto){
+  const color = {
+    'camera': 'rgb(238, 184, 104)',
+    'laptop': 'rgb(75, 166, 223)',
+    'phone': 'rgb(239, 118, 122)',
+    'tablet': 'rgb(40, 167, 68)'
+  }
+  return color[producto];
+}
+
 
 function cleanAddSaleForm() {
   newMonth.value = '';
@@ -196,15 +239,19 @@ function cleanAddSaleForm() {
 //Resetear datos en los gráficos
 function resetMonthlySales(){
 
-   //reiniciamos el Map de productos
-  monthlySalesMap.forEach((productSalesMap) =>{
-    productSalesMap.clear()
-  })
+  /**
+   * EJERCICIO 2
+   */
 
-	monthlySalesArray.length = 0;
-	monthlyLabelsSet.clear();
-	monthlySalesChart.update();
-	initMonthlyTotalSales();
+   //reiniciamos el Map de productos
+   monthlySalesMap.clear();
+
+   //reiniciamos los datos del chart
+   monthlySalesChart.data.labels = [];
+   monthlySalesChart.data.datasets.forEach(dataset => dataset.data = []);
+   monthlySalesChart.update();
+   initMonthlyTotalSales();
+   
 }
 
 function getSalesMonths(){
