@@ -176,6 +176,7 @@ function addSale() {
     // Recuento de totales
     initMonthlyTotalSales();
     updateGraphicBar();
+    updateGraphicPie();
     // Actualizar gráfico
 		//  monthlySalesChart.data.datasets[0].data = Array.from(monthlySalesMap.forEach((product) => product.values()));
 	  // monthlySalesChart.data.labels = Array.from(monthlySalesMap.keys());
@@ -218,6 +219,22 @@ function updateGraphicBar(){
   monthlySalesChart.data.labels = monthLabel;
   monthlySalesChart.data.datasets = dataSets;
   monthlySalesChart.update();
+}
+
+function updateGraphicPie(){
+  let categories = ['camera', 'laptop','phone', 'tablet'];
+
+  //para que el grafico coja las ventas por dpto necesitamos sumar sus valores
+ //usando map creamos un nuevo array apartir de los valores ingresados y sumamos los valores con reduce
+  let totalCategorySales = categories.map(category =>{
+    return Array.from(monthlySalesMap.values()).reduce((total, productSalesMap) =>{
+      return total + (productSalesMap.get(category) ||0) 
+    }, 0)
+  });
+
+   // Actualizamos el gráfico de categorias
+   deptSalesChart.data.datasets[0].data = totalCategorySales;
+   deptSalesChart.update();
 }
 
 function colorProducto(producto){
